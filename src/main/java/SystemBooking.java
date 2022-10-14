@@ -1,20 +1,24 @@
+import Model.Customer;
+import Model.Date;
+import Model.Time;
+
 public class SystemBooking
 {
-    private Customer cust = new Customer();
-    private Review rev = new Review();
+    private Customer cust = new Customer(0,"","");
+    private Review rev = new Review("",0);
 
     private FitnessClass fit = new FitnessClass();
-    private Date dte = new Date();
-    private Time tme = new Time();
-    private PaymentType ptype = new PaymentType();
+    private Date dte = new Date("");
+    private Time tme = new Time("");
+    private Payment ptype = new Payment("card");
 
-    public SystemBooking(Customer newCustomer, FitnessClass fitnessClass, Date date, Time time, PaymentType paymentType,Review newReview) {
+    public SystemBooking(Customer newCustomer, FitnessClass fitnessClass, Date date, Time time, Payment payment, Review newReview) {
         cust.setFirstName(newCustomer.getFirstName());
         cust.setLastName(newCustomer.getLastName());
         fit.setClassName(fitnessClass.getClassName());
         dte.setDate(date.getDate());
         tme.setClassTime(time.getClassTime());
-        ptype.setPaymentType(paymentType.getPaymentType());
+        ptype.setType(payment.getType());
         rev.setReview(newReview.getReview());
     }
 
@@ -24,7 +28,7 @@ public class SystemBooking
         fit.setClassName("");
         dte.setDate("");
         tme.setClassTime("");
-        ptype.setPaymentType("");
+        ptype.setType("");
         rev.setReview("");
     }
 
@@ -48,7 +52,7 @@ public class SystemBooking
         return tme;
     }
 
-    public PaymentType getPaymentType()
+    public Payment getPaymentType()
     {
         return ptype;
     }

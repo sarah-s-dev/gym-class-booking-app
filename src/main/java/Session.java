@@ -1,3 +1,7 @@
+import Model.Customer;
+import Model.Date;
+import Model.Time;
+
 import java.util.ArrayList;
 
 public class Session
@@ -16,7 +20,6 @@ public class Session
     private Date sessionDate;
     private FitnessClass className;
     private Time classTime;
-    private PaymentType paymentType;
 
 
     private ArrayList<Customer> customers = new ArrayList <Customer> ();
@@ -67,48 +70,7 @@ public class Session
             System.out.println ("You have tried to cancel too many bookings");
     }
 
-    /**
-     * Method getSessionId
-     * @return -id for the session
-     */
-    public String getSessionId ()
-    {
-        return sessionId;
-    }
 
-    /**
-     * Method getFee
-     * @return -the cost of the session
-     */
-    public double getFee ()
-    {
-        return fee;
-    }
-
-    /**
-     * Method getSessionDate
-     * @return -the date of the session
-     */
-    public Date getSessionDate ()
-    {
-        return sessionDate;
-    }
-
-    /**
-     * Method getClassName
-     *
-     * @return -the name of the class for the session
-     */
-    public FitnessClass getClassName ()
-    {
-        return className;
-    }
-
-    /**
-     * Method showCustomersOnSession
-     * Prints out all the details of all the customers in this session
-     *
-     */
     public void showCustomersOnSession ()
     {
         for (Customer c: customers)// Loop over all customers in this session
@@ -123,11 +85,7 @@ public class Session
         reviews.add (review);
     }
 
-    /**
-     * Method showReviewsForSession
-     * Prints out all the details of all the reviews for this session
-     *
-     */
+
     public void showReviewsForSession ()
     {
         for (Review rw: reviews)// Loop over all reviews for this session
