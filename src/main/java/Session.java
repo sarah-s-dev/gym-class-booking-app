@@ -1,38 +1,32 @@
-import Model.Customer;
-import Model.Date;
-import Model.Time;
+import Model.*;
 
 import java.util.ArrayList;
 
 public class Session
 {
-    private String sessionId;
-    private boolean booked;
-    private String bookingStatus;
 
-    private int bookedPlace;
+    private final int bookedPlace;
     private int capacity;
     private int numInClass;
 
-    private double fee;
+    private final double fee;
     private double totalRevenue;
 
-    private Date sessionDate;
-    private FitnessClass className;
-    private Time classTime;
+    private final Date sessionDate;
+    private final ExerciseClass className;
+    private final Time classTime;
 
 
-    private ArrayList<Customer> customers = new ArrayList <Customer> ();
-    private ArrayList <Review> reviews = new ArrayList <Review> ();
+    private final ArrayList<Customer> customers = new ArrayList<>();
+    private final ArrayList <Review> reviews = new ArrayList <> ();
 
 
-    public Session (String sessionId, FitnessClass cName, Time cTime, double fee, int place, Date date)
+    public Session (String sessionId, ExerciseClass cName, Time cTime, double fee, int place, Date date)
     {
         sessionDate = date;
         className = cName;
         classTime = cTime;
 
-        this.sessionId = sessionId;
         this.fee = fee;
         this.bookedPlace = place;
 
@@ -48,8 +42,6 @@ public class Session
             numInClass = numInClass + bookedPlace;
             capacity = capacity - bookedPlace;
             totalRevenue += fee;
-            booked = true;
-            bookingStatus = "Booked";
         } else
         {
             System.out.println ("Sorry this class is full");

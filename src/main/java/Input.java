@@ -1,32 +1,25 @@
-import Model.Customer;
-import Model.Date;
-import Model.Time;
+import Model.*;
 
 import java.util.Scanner;
 
 public class Input {
 
-    private Scanner input = new Scanner(System.in);
+    private final Scanner input = new Scanner(System.in);
 
     private final int numOfClasses = 5;
     private final int numOfTimes = 4;
-    private final int numOfPtypes = 2;
+    private final int numOfPaymentTypes = 2;
     private final int numOfDates = 4;
 
-    private FitnessClass[] classList = new FitnessClass[numOfClasses];
-    private Time[] timeList = new Time[numOfTimes];
-    private Payment[] pTypeList = new Payment[numOfPtypes];
-    private Date[] dateList = new Date [numOfDates];
+    private final ExerciseClass[] classList = new ExerciseClass[numOfClasses];
+    private final Time[] timeList = new Time[numOfTimes];
+    private final Payment[] pTypeList = new Payment[numOfPaymentTypes];
+    private final Date[] dateList = new Date [numOfDates];
 
     static Customer customer = new Customer(0, "", "");
     static Review review = new Review("", 0);
 
-    FitnessClass requestedClass = new FitnessClass();
-    Time requestedTime = new Time("");
-    Date requestedDate = new Date("");
-
-    //Selecting the fitness class
-    private FitnessClass classSelection()
+    private ExerciseClass classSelection()
     {
         for(int count = 0; count < numOfClasses; count++){
             System.out.println((count + 1) + ". " + classList[count]);
@@ -84,10 +77,10 @@ public class Input {
 
     }
 
-    //Selecting the Payment Type
+    //Selecting the Model.Payment Type
     private Payment pTypeSelection()
     {
-        for(int count = 0; count < numOfPtypes; count++){
+        for(int count = 0; count < numOfPaymentTypes; count++){
             System.out.println((count + 1) + ". " + pTypeList[count]);
         }
         System.out.println("How would you like to make your payment?");
@@ -104,37 +97,35 @@ public class Input {
 
     }
 
-    private  SystemBooking issueBooking(Customer aCustomer, FitnessClass aClass, Date aDate, Time aTime, Payment aPayment, Review aReview)
+    private  SystemBooking issueBooking(Customer aCustomer, ExerciseClass aClass, Date aDate, Time aTime, Payment aPayment, Review aReview)
     {
-        SystemBooking systemBooking = new SystemBooking(aCustomer, aClass, aDate, aTime, aPayment, aReview);
-
-        return systemBooking;
+        return new SystemBooking(aCustomer, aClass, aDate, aTime, aPayment, aReview);
     }
 
     //Entering the customers details
     private Customer customerDetailsInput()
     {
-        String custFirstName = "";
-        String custLastName = "";
+        String customerFirstName;
+        String customerLastName;
 
         do
         {
             System.out.println("Enter your first name: ");
-            custFirstName = input.nextLine();
+            customerFirstName = input.nextLine();
             System.out.println("Enter your last name: ");
-            custLastName = input.nextLine();
+            customerLastName = input.nextLine();
         }
-        while(custFirstName.isEmpty() && custLastName.isEmpty());
-        customer.setFirstName(custFirstName);
-        customer.setLastName(custLastName);
+        while(customerFirstName.isEmpty() && customerLastName.isEmpty());
+        customer.setFirstName(customerFirstName);
+        customer.setLastName(customerLastName);
 
         return customer;
     }
 
-    //Entering a Review
+    //Entering a Model.Review
     private Review reviewInput()
     {
-        String revReview = "";
+        String revReview;
 
         //Ensures a review is entered.
         do
@@ -153,11 +144,11 @@ public class Input {
 
         //<-------------------------------------USER INPUT------------------------------------->
 
-        FitnessClass zumba = new FitnessClass("Zumba");
-        FitnessClass aerobics = new FitnessClass("Aerobics");
-        FitnessClass spin = new FitnessClass("Spin");
-        FitnessClass boxing = new FitnessClass("Boxing");
-        FitnessClass yoga = new FitnessClass("Yoga");
+        ExerciseClass zumba = new ExerciseClass("Zumba");
+        ExerciseClass aerobics = new ExerciseClass("Aerobics");
+        ExerciseClass spin = new ExerciseClass("Spin");
+        ExerciseClass boxing = new ExerciseClass("Boxing");
+        ExerciseClass yoga = new ExerciseClass("Yoga");
 
         classList[0] = zumba;
         classList[1] = aerobics;
@@ -207,7 +198,6 @@ public class Input {
         Customer c12 = new Customer (12, "Isaac","Newton");
         Customer c13 = new Customer (13, "William","Shakespear");
         Customer c14 = new Customer (14, "Ernest","Hemmingway");
-        Customer c15 = new Customer (15, "Charles", "Dickens");
 
         Review rw1 = new Review ("Great class", 4);
         Review rw2 = new Review ("Not for me", 1);
@@ -224,21 +214,6 @@ public class Input {
         Session s2 = new Session ("S02", spin, afternoon, 3.50, 1, date1);
         Session s3 = new Session ("S03", boxing, earlyEve, 4.50, 1, date1);
         Session s4 = new Session ("S04", yoga, lateEve, 4.80, 1, date1);
-        Session s5 = new Session ("S05", boxing, morning, 4.50, 1, date2);
-        Session s6 = new Session ("S06", zumba, afternoon, 5.00, 1, date2);
-        Session s7 = new Session ("S07", yoga, earlyEve,  4.80, 1, date2);
-        Session s8 = new Session ("S08", aerobics, lateEve, 4.00, 1, date2);
-        Session s9 = new Session ("S09", spin, morning, 3.50, 1, date3);
-        Session s10 = new Session ("S010", aerobics, afternoon, 4.00, 1, date3);
-        Session s11 = new Session ("S011", spin, earlyEve, 3.50, 1, date3);
-        Session s12 = new Session ("S012", boxing, lateEve, 4.50, 1, date3);
-        Session s13 = new Session ("S013", zumba, morning, 5.00, 1, date4);
-        Session s14 = new Session ("S014", yoga, afternoon, 4.80, 1, date4);
-        Session s15 = new Session ("S015", spin, earlyEve, 4.80, 1, date4);
-        Session s16 = new Session ("S016", boxing, lateEve, 4.50, 1, date4);
-
-
-
 
 
         //Issue a booking loop
@@ -334,14 +309,11 @@ public class Input {
                     purchaseLoop = false; //Closes the loop and the program.
                 }
                 else if(purchaseAgain == 'Y') {
-                    continue; //Loops the program
                 }
             }
 
         }
         while(purchaseLoop);
-        //System.exit(0);
-
     }
 
 

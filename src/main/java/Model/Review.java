@@ -7,7 +7,9 @@ import lombok.Data;
 @Data
 @Builder
 @AllArgsConstructor
-public class Time
-{
-    private String time;
+public class Review {
+
+    private String review;
+    private int rating;
+
 }
